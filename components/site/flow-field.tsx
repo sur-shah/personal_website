@@ -28,7 +28,7 @@ function createNodes(width: number, height: number) {
   return Array.from({ length: count }, (): NetworkNode => {
     const depth = 0.45 + random() * 0.55;
     const direction = random() * Math.PI * 2;
-    const speed = (0.018 + random() * 0.026) * depth;
+    const speed = (0.035 + random() * 0.045) * depth;
 
     return {
       x: width * (startX + random() * (1.04 - startX)),
