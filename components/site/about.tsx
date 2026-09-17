@@ -6,10 +6,7 @@ import { education, skills } from '@/lib/resume-data';
 
 export function About() {
   return (
-    <section
-      id="about"
-      className="scroll-mt-20 border-t border-white/8 px-6 py-24 sm:px-10 sm:py-32"
-    >
+    <section id="about" className="scroll-mt-20 px-6 py-14 sm:px-10 sm:py-20">
       <div className="mx-auto w-full max-w-5xl">
         <ScrollWordReveal text="I'm a Computer Science student at UC San Diego focused on backend systems, applied machine learning, and full-stack development." />
 

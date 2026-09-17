@@ -22,7 +22,7 @@ function createRandom(seed: number) {
 function createNodes(width: number, height: number) {
   const random = createRandom(Math.round(width + height));
   const mobile = width < 640;
-  const count = mobile ? 32 : 64;
+  const count = mobile ? 40 : 78;
   const startX = mobile ? 0.08 : 0.32;
 
   return Array.from({ length: count }, (): NetworkNode => {
@@ -94,7 +94,7 @@ export function FlowField() {
       context.clearRect(0, 0, width, height);
       const progress = scrollProgressRef.current;
       const mobile = width < 640;
-      const connectionDistance = mobile ? 122 : 148;
+      const connectionDistance = mobile ? 112 : 136;
       const points = nodes.map((node, index) => {
         if (!reduceMotion) {
           node.x += node.vx;

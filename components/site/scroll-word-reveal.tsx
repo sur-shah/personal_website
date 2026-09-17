@@ -54,7 +54,7 @@ export function ScrollWordReveal({ text }: { text: string }) {
   return (
     <div
       ref={containerRef}
-      className="flex min-h-[62vh] items-center py-16 sm:min-h-[72vh] sm:py-24"
+      className="flex min-h-[40vh] items-center py-8 sm:min-h-[46vh] sm:py-12"
     >
       <div className="max-w-5xl">
         <p className="mb-8 text-sm font-medium text-brand">About</p>
