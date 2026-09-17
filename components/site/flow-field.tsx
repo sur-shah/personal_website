@@ -22,16 +22,19 @@ function createRandom(seed: number) {
 function createNodes(width: number, height: number) {
   const random = createRandom(Math.round(width + height));
   const mobile = width < 640;
-  const count = mobile ? 40 : 78;
-  const startX = mobile ? 0.08 : 0.32;
+  const count = mobile ? 58 : 116;
+  const startX = mobile ? 0.04 : 0.24;
 
   return Array.from({ length: count }, (): NetworkNode => {
     const depth = 0.45 + random() * 0.55;
+    const direction = random() * Math.PI * 2;
+    const speed = (0.018 + random() * 0.026) * depth;
+
     return {
       x: width * (startX + random() * (1.04 - startX)),
       y: height * (-0.04 + random() * 1.08),
-      vx: (random() - 0.5) * 0.12 * depth,
-      vy: (random() - 0.5) * 0.09 * depth,
+      vx: Math.cos(direction) * speed,
+      vy: Math.sin(direction) * speed,
       depth,
     };
   });
@@ -94,7 +97,7 @@ export function FlowField() {
       context.clearRect(0, 0, width, height);
       const progress = scrollProgressRef.current;
       const mobile = width < 640;
-      const connectionDistance = mobile ? 112 : 136;
+      const connectionDistance = mobile ? 100 : 118;
       const points = nodes.map((node, index) => {
         if (!reduceMotion) {
           node.x += node.vx;
