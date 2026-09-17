@@ -28,19 +28,22 @@ const links = [
 
 export function Contact() {
   return (
-    <section id="contact" className="px-6 py-24 sm:px-10 sm:py-32">
+    <section
+      id="contact"
+      className="scroll-mt-20 border-t border-white/8 px-6 py-24 sm:px-10 sm:py-32"
+    >
       <div className="mx-auto w-full max-w-4xl">
         <SectionHeading
-          title="Let's build something."
-          description="I'm always happy to talk shop, swap notes on a project, or hear about new opportunities."
+          title="Get in touch"
+          description="I'm open to software engineering opportunities and conversations about backend systems, applied ML, and full-stack development."
         />
 
         <Reveal delay={0.1}>
           <a
             href={`mailto:${siteConfig.email}`}
-            className="group mt-10 inline-flex items-center gap-3 text-3xl font-medium tracking-tight text-foreground transition-colors duration-300 hover:text-brand sm:text-4xl"
+            className="focus-ring group mt-10 inline-flex rounded-md text-3xl font-medium tracking-tight text-foreground transition-colors duration-200 hover:text-brand sm:text-4xl"
           >
-            Say hello
+            {siteConfig.email}
             <ArrowUpRight
               className="size-6 text-muted-foreground transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-brand"
               strokeWidth={1.5}
@@ -56,7 +59,7 @@ export function Contact() {
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                className="group flex items-center justify-between gap-4 py-4"
+                className="focus-ring group flex items-center justify-between gap-4 rounded-sm py-4"
               >
                 <span className="flex items-center gap-3">
                   <Icon

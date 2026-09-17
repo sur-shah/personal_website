@@ -1,25 +1,19 @@
-import type { CompanyAccent, CompanyLogo as CompanyLogoData } from '@/lib/resume-data';
+import type {
+  CompanyAccent,
+  CompanyLogo as CompanyLogoData,
+} from '@/lib/resume-data';
 
 // Mono-initial fallback only (unused today, kept for future companies without
 // an asset). Image logos render as-is below with no card/ring treatment —
 // see the note in that branch for why.
-const monoClasses: Record<CompanyAccent, { bg: string; text: string; ring: string }> = {
-  brand: { bg: 'bg-white', text: 'text-foreground', ring: 'ring-brand/25' },
-  violet: {
-    bg: 'bg-brand-violet/10',
-    text: 'text-brand-violet',
-    ring: 'ring-brand-violet/20',
-  },
-  wine: {
-    bg: 'bg-wine-accent/10',
-    text: 'text-wine-accent',
-    ring: 'ring-wine-accent/20',
-  },
-  emerald: {
-    bg: 'bg-emerald-accent/10',
-    text: 'text-emerald-accent',
-    ring: 'ring-emerald-accent/20',
-  },
+const monoClasses: Record<
+  CompanyAccent,
+  { bg: string; text: string; ring: string }
+> = {
+  brand: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
+  violet: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
+  wine: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
+  emerald: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
 };
 
 export function CompanyLogo({
@@ -41,7 +35,10 @@ export function CompanyLogo({
       <img
         src={logo.src}
         alt={logo.alt}
-        className="h-11 w-auto shrink-0 rounded-lg object-contain"
+        width={44}
+        height={44}
+        loading="lazy"
+        className="size-11 shrink-0 rounded-xl object-contain"
       />
     );
   }

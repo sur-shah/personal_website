@@ -2,7 +2,7 @@ export const education = {
   school: 'University of California, San Diego',
   degree: 'B.S. in Computer Science',
   location: 'La Jolla, CA',
-  period: '2023–2027',
+  period: '2023-2027',
   gpa: '3.746',
   coursework: [
     'Software Engineering Principles',
@@ -49,7 +49,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: 'Attentive',
     role: 'AI Intern, Software Engineering',
-    period: 'Jun 2026–Aug 2026',
+    period: 'Jun 2026 - Aug 2026',
     logo: { type: 'image', src: '/logos/attentive.jpg', alt: 'Attentive' },
     accent: 'violet',
     highlights: [
@@ -60,7 +60,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: 'E. & J. Gallo',
     role: 'Software Engineering Intern',
-    period: 'Jun 2025–Aug 2025',
+    period: 'Jun 2025 - Aug 2025',
     logo: { type: 'image', src: '/logos/gallo.jpg', alt: 'E. & J. Gallo' },
     accent: 'wine',
     highlights: [
@@ -71,8 +71,12 @@ export const experience: ExperienceEntry[] = [
   {
     org: 'Triton Software Engineering',
     role: 'Full Stack Developer',
-    period: 'Nov 2024–Jun 2025',
-    logo: { type: 'image', src: '/logos/tse.svg', alt: 'Triton Software Engineering' },
+    period: 'Nov 2024 - Jun 2025',
+    logo: {
+      type: 'image',
+      src: '/logos/tse.svg',
+      alt: 'Triton Software Engineering',
+    },
     accent: 'brand',
     highlights: [
       "Launched SpayLA's nonprofit web platform with React, TypeScript, and Firebase, enabling 100+ Los Angeles pet owners to access affordable clinic listings.",
@@ -82,7 +86,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: 'Algoverse',
     role: 'AI Researcher, Publication',
-    period: 'Jun 2024–Nov 2024',
+    period: 'Jun 2024 - Nov 2024',
     logo: { type: 'image', src: '/logos/algoverse.jpg', alt: 'Algoverse' },
     accent: 'emerald',
     highlights: [
@@ -102,8 +106,12 @@ export const leadership: {
 } = {
   org: 'Triton Software Engineering',
   role: 'Vice President of Operations',
-  period: 'Jun 2025–Present',
-  logo: { type: 'image', src: '/logos/tse.svg', alt: 'Triton Software Engineering' },
+  period: 'Jun 2025 - Present',
+  logo: {
+    type: 'image',
+    src: '/logos/tse.svg',
+    alt: 'Triton Software Engineering',
+  },
   accent: 'brand',
   highlight:
     'Standardized onboarding for 100+ student developers, cutting ramp-up time by 50%, and reduced release issues through feature-branch workflows and CI/CD across 7 active projects.',

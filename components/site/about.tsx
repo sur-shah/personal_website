@@ -6,12 +6,14 @@ import { education, skills } from '@/lib/resume-data';
 
 export function About() {
   return (
-    <section id="about" className="px-6 py-24 sm:px-10 sm:py-32">
+    <section
+      id="about"
+      className="scroll-mt-20 border-t border-white/8 px-6 py-24 sm:px-10 sm:py-32"
+    >
       <div className="mx-auto w-full max-w-5xl">
         <SectionHeading
-          eyebrow="About"
-          title="Building reliable systems, end to end."
-          description="I'm a Computer Science student at UC San Diego who likes working across the full stack, from fault-tolerant backend runtimes to ML-driven products. I've shipped a checkpointed agent runtime at Attentive, a multi-million-record entity-matching pipeline at E. & J. Gallo, and a nonprofit platform with Triton Software Engineering, plus published sarcasm-detection research at COLING 2025."
+          title="About"
+          description="I'm a Computer Science student at UC San Diego focused on backend systems, applied machine learning, and full-stack development."
         />
 
         <div className="mt-14 grid gap-12 md:grid-cols-2">
@@ -28,7 +30,7 @@ export function About() {
                   {education.school}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {education.period} &middot; GPA {education.gpa}
+                  {education.period} / GPA {education.gpa}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground/90">
                   {education.coursework.join(', ')}
@@ -37,14 +39,17 @@ export function About() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.18} className="md:border-l md:border-white/8 md:pl-12">
+          <Reveal
+            delay={0.18}
+            className="md:border-l md:border-white/8 md:pl-12"
+          >
             <div className="divide-y divide-white/8">
               {Object.entries(skills).map(([group, items]) => (
                 <div
                   key={group}
                   className="grid gap-1 py-4 first:pt-0 last:pb-0 sm:grid-cols-[9rem_1fr] sm:gap-4"
                 >
-                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                  <p className="text-sm font-medium text-muted-foreground">
                     {group}
                   </p>
                   <p className="text-sm text-foreground/90">

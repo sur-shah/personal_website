@@ -4,20 +4,21 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Download, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { GithubMark } from '@/components/site/icons';
+import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/lib/site-config';
+import { cn } from '@/lib/utils';
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 sm:pt-6">
-        <nav className="glass-panel flex w-full max-w-xl items-center justify-between gap-2 rounded-full px-3 py-2 sm:gap-4 sm:px-4">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-background/85 backdrop-blur-xl">
+        <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6 sm:px-10">
           <a
             href="#top"
-            className="rounded-full px-2 text-sm font-medium tracking-tight text-foreground"
+            className="focus-ring rounded-md text-sm font-semibold tracking-tight text-foreground"
           >
             Sur Shah
           </a>
@@ -27,7 +28,7 @@ export function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors duration-300 hover:bg-white/5 hover:text-foreground"
+                className="focus-ring rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
               >
                 {item.label}
               </a>
@@ -35,36 +36,38 @@ export function Navbar() {
           </div>
 
           <div className="hidden items-center gap-2 md:flex">
-            <Button
-              variant="ghost"
-              size="icon-lg"
-              className="rounded-full"
-              render={
-                <a
-                  href={siteConfig.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                />
-              }
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className={cn(
+                buttonVariants({ variant: 'ghost', size: 'icon-lg' }),
+                'rounded-full',
+              )}
             >
               <GithubMark className="size-4" />
-            </Button>
-            <Button
-              size="sm"
-              className="gap-1.5 rounded-full"
-              render={<a href={siteConfig.resumeUrl} download />}
+            </a>
+            <a
+              href={siteConfig.resumeUrl}
+              download
+              className={cn(
+                buttonVariants({ size: 'sm' }),
+                'h-9 gap-1.5 rounded-full px-4',
+              )}
             >
               Résumé
               <Download className="size-3.5" strokeWidth={1.5} />
-            </Button>
+            </a>
           </div>
 
           <button
             type="button"
-            aria-label="Toggle menu"
+            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             onClick={() => setOpen((v) => !v)}
-            className="flex size-11 items-center justify-center rounded-full text-foreground md:hidden"
+            className="focus-ring flex size-11 items-center justify-center rounded-full text-foreground md:hidden"
           >
             <Menu className="size-4.5" strokeWidth={1.5} />
           </button>
@@ -74,17 +77,18 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-black/85 backdrop-blur-2xl md:hidden"
+            transition={{ duration: 0.25, ease: [0.32, 0.72, 0, 1] }}
+            className="fixed inset-0 z-40 flex overscroll-contain flex-col items-center justify-center gap-8 bg-background md:hidden"
           >
             <button
               type="button"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="absolute right-6 top-6 flex size-11 items-center justify-center rounded-full border border-white/10 text-foreground"
+              className="focus-ring absolute right-6 top-3 flex size-11 items-center justify-center rounded-full border border-white/10 text-foreground"
             >
               <X className="size-4.5" strokeWidth={1.5} />
             </button>
@@ -97,11 +101,11 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.5,
+                  duration: 0.35,
                   delay: 0.1 + i * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="text-3xl font-medium tracking-tight text-foreground"
+                className="focus-ring rounded-md text-3xl font-medium tracking-tight text-foreground"
               >
                 {item.label}
               </motion.a>
@@ -113,11 +117,11 @@ export function Navbar() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.5,
+                duration: 0.35,
                 delay: 0.1 + siteConfig.nav.length * 0.06,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-4 flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
+              className="focus-ring mt-4 flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
             >
               Download résumé
               <Download className="size-3.5" strokeWidth={1.5} />
