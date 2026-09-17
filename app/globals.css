@@ -135,10 +135,14 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
   html {
     @apply font-sans scroll-smooth;
     scroll-padding-top: 6rem;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 }
 

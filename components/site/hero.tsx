@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-center px-6 pb-24 pt-32 sm:px-10"
+      className="relative flex flex-col justify-center px-6 pb-16 pt-28 sm:px-10 sm:pt-32"
     >
       <div className="mx-auto w-full max-w-3xl">
         <Reveal>

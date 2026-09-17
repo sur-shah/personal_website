@@ -1,14 +1,7 @@
 import { CompanyLogo } from '@/components/site/company-logo';
 import { Reveal } from '@/components/site/reveal';
 import { SectionHeading } from '@/components/site/section-heading';
-import { type CompanyAccent, experience, leadership } from '@/lib/resume-data';
-
-const dotClasses: Record<CompanyAccent, string> = {
-  brand: 'bg-brand/70',
-  violet: 'bg-brand-violet/70',
-  wine: 'bg-wine-accent/70',
-  emerald: 'bg-emerald-accent/70',
-};
+import { experience, leadership } from '@/lib/resume-data';
 
 export function Experience() {
   return (
@@ -38,9 +31,7 @@ export function Experience() {
                           key={point}
                           className="flex gap-2.5 text-sm leading-6 text-foreground/80"
                         >
-                          <span
-                            className={`mt-2.5 size-1 shrink-0 rounded-full ${dotClasses[entry.accent]}`}
-                          />
+                          <span className="mt-2.5 size-1 shrink-0 rounded-full bg-brand/70" />
                           {point}
                         </li>
                       ))}
