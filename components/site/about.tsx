@@ -1,7 +1,7 @@
 import { GraduationCap } from 'lucide-react';
 
 import { Reveal } from '@/components/site/reveal';
-import { SectionHeading } from '@/components/site/section-heading';
+import { ScrollWordReveal } from '@/components/site/scroll-word-reveal';
 import { education, skills } from '@/lib/resume-data';
 
 export function About() {
@@ -11,12 +11,9 @@ export function About() {
       className="scroll-mt-20 border-t border-white/8 px-6 py-24 sm:px-10 sm:py-32"
     >
       <div className="mx-auto w-full max-w-5xl">
-        <SectionHeading
-          title="About"
-          description="I'm a Computer Science student at UC San Diego focused on backend systems, applied machine learning, and full-stack development."
-        />
+        <ScrollWordReveal text="I'm a Computer Science student at UC San Diego focused on backend systems, applied machine learning, and full-stack development." />
 
-        <div className="mt-14 grid gap-12 md:grid-cols-2">
+        <div className="grid gap-12 border-t border-white/8 pt-12 md:grid-cols-2">
           <Reveal delay={0.1}>
             <div className="flex items-start gap-3">
               <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-white/8 text-muted-foreground">
