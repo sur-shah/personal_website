@@ -1,8 +1,8 @@
 import usa from '@svg-maps/usa';
 
 const locations = [
-  { name: 'Modesto', x: 381, y: 286, labelX: 14, labelY: -10 },
-  { name: 'San Diego', x: 425, y: 380, labelX: 14, labelY: 18 },
+  { name: 'Modesto', x: 340, y: 270, labelX: 14, labelY: -10 },
+  { name: 'San Diego', x: 375, y: 370, labelX: 14, labelY: 18 },
   {
     name: 'New York',
     x: 1138,
