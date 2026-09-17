@@ -9,9 +9,9 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="scroll-mt-24 px-6 pb-20 pt-24 sm:px-10 sm:pb-28"
+      className="scroll-mt-24 px-6 pb-14 pt-24 sm:px-10 sm:pb-18"
     >
-      <div className="mx-auto min-h-[29rem] w-full max-w-6xl">
+      <div className="mx-auto w-full max-w-6xl">
         <h1 className="text-balance text-6xl font-semibold leading-none tracking-[-0.06em] text-foreground sm:text-8xl lg:text-9xl">
           {siteConfig.name}
         </h1>
