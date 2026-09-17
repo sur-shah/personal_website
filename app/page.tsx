@@ -13,9 +13,9 @@ export default function Home() {
         <GalaxyBackground />
         <div className="relative z-10">
           <Hero />
-          <LogoStrip />
         </div>
       </div>
+      <LogoStrip />
       <NetworkTransition />
       <About />
       <Experience />
