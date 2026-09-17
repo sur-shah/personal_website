@@ -158,6 +158,63 @@ body {
   }
 }
 
+.experience-map-state {
+  fill: rgb(255 255 255 / 1.8%);
+  stroke: rgb(255 255 255 / 12%);
+  transition:
+    fill 240ms ease,
+    stroke 240ms ease,
+    filter 240ms ease;
+}
+
+.experience-map-state[data-featured='true'] {
+  fill: rgb(124 224 209 / 8%);
+  stroke: rgb(124 224 209 / 45%);
+}
+
+.experience-map-state[data-lit='true'] {
+  fill: rgb(124 224 209 / 22%);
+  stroke: rgb(124 224 209 / 90%);
+  filter: drop-shadow(0 0 8px rgb(64 190 181 / 48%));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .experience-map-state:hover {
+    fill: rgb(124 224 209 / 22%);
+    stroke: rgb(124 224 209 / 90%);
+    filter: drop-shadow(0 0 8px rgb(64 190 181 / 48%));
+  }
+
+  .experience-map-pin:hover {
+    box-shadow:
+      0 0 0 3px rgb(124 224 209 / 20%),
+      0 0 18px rgb(64 190 181 / 35%);
+  }
+}
+
+.experience-map-pin {
+  cursor: pointer;
+}
+
+.experience-map-pin[aria-expanded='true'] {
+  box-shadow:
+    0 0 0 3px rgb(124 224 209 / 20%),
+    0 0 18px rgb(64 190 181 / 35%);
+}
+
+@media (min-width: 640px) {
+  .experience-map-detail {
+    position: absolute;
+    left: var(--pin-left);
+    top: var(--pin-top);
+    transform: translate(20px, -50%);
+  }
+
+  .experience-map-detail[data-side='left'] {
+    transform: translate(calc(-100% - 20px), -50%);
+  }
+}
+
 @keyframes map-pin-pulse {
   0% {
     opacity: 0.7;
@@ -174,5 +231,9 @@ body {
   .map-pin-pulse {
     animation: none;
     opacity: 0.55;
+  }
+
+  .experience-map-state {
+    transition: none;
   }
 }
