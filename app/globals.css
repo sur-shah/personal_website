@@ -158,6 +158,40 @@ body {
   }
 }
 
+.planet-hit:hover .planet-label,
+.planet-hit:focus-visible .planet-label,
+.planet-hit[aria-pressed='true'] .planet-label {
+  opacity: 1;
+  transform: translateY(1.75rem);
+}
+
+.map-ambient-glow {
+  animation: map-ambient-drift 22s ease-in-out infinite alternate;
+}
+
+.map-ambient-glow-secondary {
+  animation: map-ambient-drift-secondary 29s ease-in-out infinite alternate;
+}
+
+@keyframes map-ambient-drift {
+  to {
+    transform: translate3d(-9%, 7%, 0);
+  }
+}
+
+@keyframes map-ambient-drift-secondary {
+  to {
+    transform: translate3d(10%, -9%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-ambient-glow,
+  .map-ambient-glow-secondary {
+    animation: none;
+  }
+}
+
 .experience-map-state {
   fill: rgb(255 255 255 / 1.8%);
   stroke: rgb(255 255 255 / 12%);
