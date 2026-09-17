@@ -1,12 +1,12 @@
 import usa from '@svg-maps/usa';
 
 const locations = [
-  { name: 'Modesto', x: 287, y: 346, labelX: 14, labelY: -10 },
-  { name: 'San Diego', x: 322, y: 426, labelX: 14, labelY: 20 },
+  { name: 'Modesto', x: 381, y: 286, labelX: 14, labelY: -10 },
+  { name: 'San Diego', x: 425, y: 380, labelX: 14, labelY: 18 },
   {
     name: 'New York',
-    x: 1056,
-    y: 246,
+    x: 1138,
+    y: 210,
     labelX: -18,
     labelY: -12,
     anchor: 'end',
@@ -91,18 +91,6 @@ export function ExperienceMap() {
           </g>
         ))}
       </svg>
-
-      <figcaption className="mt-3 flex items-center justify-between gap-4 text-[11px] text-muted-foreground/60">
-        <span>California · New York</span>
-        <a
-          className="focus-ring rounded-sm transition-colors hover:text-muted-foreground"
-          href="https://www.amcharts.com/svg-maps/?map=usa"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Map geometry: amCharts
-        </a>
-      </figcaption>
     </figure>
   );
 }
