@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
+import { AmbientBackground } from '@/components/site/ambient-background';
+import { Footer } from '@/components/site/footer';
+import { Navbar } from '@/components/site/navbar';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -14,10 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Personal Website',
-    template: '%s | Personal Website',
+    default: 'Sur Shah · Software Engineer',
+    template: '%s | Sur Shah',
   },
-  description: 'A modern personal website built with Next.js and Tailwind CSS.',
+  description:
+    'Sur Shah is a software engineer studying Computer Science at UC San Diego, building fault-tolerant systems and ML-driven products.',
 };
 
 export default function RootLayout({
@@ -26,12 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
       >
+        <AmbientBackground />
         <div className="flex min-h-screen flex-col">
+          <Navbar />
           <main className="flex-1">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>
