@@ -50,7 +50,7 @@ export const experience: ExperienceEntry[] = [
     org: 'Attentive',
     role: 'AI Intern, Software Engineering',
     period: 'Jun 2026–Aug 2026',
-    logo: { type: 'image', src: '/logos/attentive.png', alt: 'Attentive' },
+    logo: { type: 'image', src: '/logos/attentive.jpg', alt: 'Attentive' },
     accent: 'violet',
     highlights: [
       'Engineered a fault-tolerant Python runtime for multi-hour agent workflows that survives worker crashes and checkpoints state so interrupted runs pick up where they left off.',
