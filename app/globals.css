@@ -150,4 +150,29 @@ body {
   .focus-ring {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
+
+  .map-pin-pulse {
+    animation: map-pin-pulse 2.8s ease-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+
+@keyframes map-pin-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.45);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-pin-pulse {
+    animation: none;
+    opacity: 0.55;
+  }
 }
