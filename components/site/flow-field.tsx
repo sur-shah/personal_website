@@ -22,7 +22,7 @@ function createRandom(seed: number) {
 function createNodes(width: number, height: number) {
   const random = createRandom(Math.round(width + height));
   const mobile = width < 640;
-  const count = mobile ? 24 : 42;
+  const count = mobile ? 32 : 64;
   const startX = mobile ? 0.08 : 0.32;
 
   return Array.from({ length: count }, (): NetworkNode => {
@@ -94,7 +94,7 @@ export function FlowField() {
       context.clearRect(0, 0, width, height);
       const progress = scrollProgressRef.current;
       const mobile = width < 640;
-      const connectionDistance = mobile ? 145 : 168;
+      const connectionDistance = mobile ? 122 : 148;
       const points = nodes.map((node, index) => {
         if (!reduceMotion) {
           node.x += node.vx;
@@ -136,10 +136,10 @@ export function FlowField() {
           if (distance >= connectionDistance) continue;
           const alpha =
             (1 - distance / connectionDistance) *
-            0.38 *
+            0.46 *
             Math.min(a.depth, b.depth);
-          context.strokeStyle = `rgba(126, 238, 118, ${alpha})`;
-          context.lineWidth = 0.7;
+          context.strokeStyle = `rgba(64, 190, 181, ${alpha})`;
+          context.lineWidth = 0.8;
           context.beginPath();
           context.moveTo(a.x, a.y);
           context.lineTo(b.x, b.y);
@@ -148,15 +148,9 @@ export function FlowField() {
       }
 
       points.forEach((point) => {
-        context.fillStyle = `rgba(176, 255, 148, ${0.34 + point.depth * 0.42})`;
+        context.fillStyle = `rgba(124, 224, 209, ${0.55 + point.depth * 0.35})`;
         context.beginPath();
-        context.arc(
-          point.x,
-          point.y,
-          0.75 + point.depth * 0.85,
-          0,
-          Math.PI * 2,
-        );
+        context.arc(point.x, point.y, 1 + point.depth * 1.1, 0, Math.PI * 2);
         context.fill();
       });
 
@@ -194,7 +188,7 @@ export function FlowField() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 size-full opacity-55 [mask-image:linear-gradient(to_left,black_0%,black_64%,transparent_96%)] sm:opacity-90"
+      className="pointer-events-none absolute inset-0 size-full opacity-70 [mask-image:linear-gradient(to_left,black_0%,black_72%,transparent_96%)] sm:opacity-95"
     />
   );
 }
