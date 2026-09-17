@@ -13,7 +13,7 @@ export function Hero() {
     >
       <div className="mx-auto w-full max-w-3xl">
         <Reveal>
-          <span className="inline-flex items-center rounded-full border border-white/8 bg-white/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <span className="inline-flex items-center rounded-full border border-brand/20 bg-brand/[0.06] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-brand">
             UC San Diego &middot; Computer Science
           </span>
         </Reveal>
@@ -25,7 +25,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={0.14}>
-          <p className="mt-3 text-xl text-muted-foreground sm:text-2xl">
+          <p className="text-gradient-brand mt-3 text-xl font-medium sm:text-2xl">
             {siteConfig.role}
           </p>
         </Reveal>

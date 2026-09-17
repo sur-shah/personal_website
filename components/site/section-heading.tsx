@@ -13,7 +13,7 @@ export function SectionHeading({
     <Reveal>
       <div className="max-w-2xl">
         {eyebrow && (
-          <span className="inline-flex items-center rounded-full border border-white/8 bg-white/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <span className="inline-flex items-center rounded-full border border-brand/20 bg-brand/[0.06] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-brand">
             {eyebrow}
           </span>
         )}

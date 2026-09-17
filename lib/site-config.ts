@@ -3,9 +3,8 @@ export const siteConfig = {
   role: 'Software Engineer',
   location: 'La Jolla, CA',
   email: 'sushah@ucsd.edu',
-  // TODO: replace with your real profile URLs
-  github: 'https://github.com/YOUR_USERNAME',
-  linkedin: 'https://www.linkedin.com/in/YOUR_HANDLE',
+  github: 'https://github.com/sur-shah',
+  linkedin: 'https://www.linkedin.com/in/sur-r-shah/',
   resumeUrl: '/resume.pdf',
   nav: [
     { label: 'About', href: '#about' },
