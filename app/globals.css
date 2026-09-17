@@ -120,7 +120,7 @@ body {
   --sidebar-accent-foreground: oklch(0.96 0 0);
   --sidebar-border: oklch(1 0 0 / 8%);
   --sidebar-ring: oklch(0.556 0 0);
-  --brand: oklch(0.7 0.15 245);
+  --brand: oklch(0.78 0.18 142);
 }
 
 @layer base {

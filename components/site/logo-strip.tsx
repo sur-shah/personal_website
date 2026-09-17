@@ -6,7 +6,7 @@ export function LogoStrip() {
   return (
     <section
       aria-label="Organizations"
-      className="border-t border-white/8 px-6 py-12 sm:px-10"
+      className="border-t border-white/8 bg-background/35 px-6 py-12 backdrop-blur-[2px] sm:px-10"
     >
       <Reveal>
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-7">
