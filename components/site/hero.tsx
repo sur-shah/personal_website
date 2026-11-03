@@ -1,4 +1,5 @@
 import { Download } from 'lucide-react';
+import { AccentConstellation } from '@/components/site/accent-constellation';
 
 import { GithubMark } from '@/components/site/icons';
 import { PlanetScene } from '@/components/site/planet-scene';
@@ -59,6 +60,7 @@ export function Hero() {
               <GithubMark className="size-4.5" />
             </a>
           </div>
+          <AccentConstellation />
         </div>
         <PlanetScene />
       </div>

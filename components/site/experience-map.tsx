@@ -114,6 +114,16 @@ export function ExperienceMap() {
               ))}
           </g>
 
+          <path
+            className="map-route"
+            pathLength="1"
+            d="M340 270 Q720 -70 1138 210"
+          />
+          <path
+            className="map-route"
+            pathLength="1"
+            d="M375 370 Q250 320 340 270"
+          />
           {locations.map((location, index) => (
             <g aria-hidden="true" key={location.name}>
               <circle
@@ -171,7 +181,7 @@ export function ExperienceMap() {
       {activeLocation && (
         <section
           aria-label={`${activeLocation.name} experience`}
-          className="experience-map-detail relative z-20 mt-4 w-full rounded-xl border border-brand/35 bg-[#10191b] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:mt-0 sm:w-64"
+          className="experience-map-detail relative z-20 mt-4 w-full rounded-xl border border-brand/35 bg-[#14151a] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:mt-0 sm:w-64"
           data-side={activeLocation.side}
           id="experience-map-detail"
           style={
