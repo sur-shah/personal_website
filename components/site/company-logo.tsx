@@ -10,10 +10,10 @@ const monoClasses: Record<
   CompanyAccent,
   { bg: string; text: string; ring: string }
 > = {
-  brand: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
-  violet: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
-  wine: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
-  emerald: { bg: 'bg-white/5', text: 'text-foreground', ring: 'ring-white/10' },
+  brand: { bg: 'bg-muted', text: 'text-foreground', ring: 'ring-border' },
+  violet: { bg: 'bg-muted', text: 'text-foreground', ring: 'ring-border' },
+  wine: { bg: 'bg-muted', text: 'text-foreground', ring: 'ring-border' },
+  emerald: { bg: 'bg-muted', text: 'text-foreground', ring: 'ring-border' },
 };
 
 export function CompanyLogo({
@@ -38,7 +38,7 @@ export function CompanyLogo({
         width={44}
         height={44}
         loading="lazy"
-        className="size-11 shrink-0 rounded-xl object-contain"
+        className={`size-11 shrink-0 rounded-xl object-contain ${logo.src === '/logos/tse.svg' ? 'invert dark:invert-0' : ''}`}
       />
     );
   }

@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Space_Grotesk, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
 import { Footer } from '@/components/site/footer';
 import { Navbar } from '@/components/site/navbar';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
   subsets: ['latin'],
 });
 
@@ -24,9 +24,15 @@ export const metadata: Metadata = {
     'Sur Shah is a software engineer studying Computer Science at UC San Diego, building fault-tolerant systems and ML-driven products.',
 };
 
-export const viewport: Viewport = {
-  themeColor: '#090a0c',
-};
+export const viewport: Viewport = { colorScheme: 'light dark' };
+
+const themeBootstrap = `try {
+  var preference = localStorage.getItem('sur-theme');
+  document.documentElement.classList.toggle('dark',
+    preference === 'dark' || (preference !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches));
+} catch {
+  document.documentElement.classList.toggle('dark', matchMedia('(prefers-color-scheme: dark)').matches);
+}`;
 
 export default function RootLayout({
   children,
@@ -34,9 +40,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
+        className={`${spaceGrotesk.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
       >
         <a
           href="#main-content"

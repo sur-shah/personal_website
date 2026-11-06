@@ -46,7 +46,7 @@ export function AccentConstellation() {
         <svg
           aria-hidden="true"
           viewBox="0 0 176 56"
-          className="pointer-events-none absolute inset-0 size-full fill-none stroke-white/20"
+          className="pointer-events-none absolute inset-0 size-full fill-none stroke-foreground/25"
         >
           <path d="M22 33 66 19 110 39 154 26" />
         </svg>
@@ -69,7 +69,7 @@ export function AccentConstellation() {
         <p className="text-foreground/80">
           {accents.find((accent) => accent.id === selected)?.name}
         </p>
-        <p>Choose your light</p>
+        <p>Accent color</p>
       </div>
     </div>
   );

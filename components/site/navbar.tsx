@@ -5,6 +5,7 @@ import { Download, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 import { GithubMark } from '@/components/site/icons';
+import { ThemeToggle } from '@/components/site/theme-toggle';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
@@ -14,7 +15,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-background/85 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95">
         <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6 sm:px-10">
           <a
             href="#top"
@@ -35,7 +36,8 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <a
               href={siteConfig.github}
               target="_blank"
@@ -43,7 +45,7 @@ export function Navbar() {
               aria-label="GitHub"
               className={cn(
                 buttonVariants({ variant: 'ghost', size: 'icon-lg' }),
-                'rounded-full',
+                'hidden rounded-md md:inline-flex',
               )}
             >
               <GithubMark className="size-4" />
@@ -53,24 +55,29 @@ export function Navbar() {
               download
               className={cn(
                 buttonVariants({ size: 'sm' }),
-                'h-9 gap-1.5 rounded-full px-4',
+                'hidden h-9 gap-1.5 rounded-md px-4 md:inline-flex',
               )}
             >
               Résumé
               <Download className="size-3.5" strokeWidth={1.5} />
             </a>
+            <button
+              type="button"
+              aria-label={
+                open ? 'Close navigation menu' : 'Open navigation menu'
+              }
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              onClick={() => setOpen((v) => !v)}
+              className="focus-ring flex size-11 items-center justify-center rounded-full text-foreground md:hidden"
+            >
+              {open ? (
+                <X className="size-4.5" strokeWidth={1.5} />
+              ) : (
+                <Menu className="size-4.5" strokeWidth={1.5} />
+              )}
+            </button>
           </div>
-
-          <button
-            type="button"
-            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={open}
-            aria-controls="mobile-navigation"
-            onClick={() => setOpen((v) => !v)}
-            className="focus-ring flex size-11 items-center justify-center rounded-full text-foreground md:hidden"
-          >
-            <Menu className="size-4.5" strokeWidth={1.5} />
-          </button>
         </nav>
       </header>
 
@@ -88,7 +95,7 @@ export function Navbar() {
               type="button"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="focus-ring absolute right-6 top-3 flex size-11 items-center justify-center rounded-full border border-white/10 text-foreground"
+              className="focus-ring absolute right-6 top-3 flex size-11 items-center justify-center rounded-full border border-border text-foreground"
             >
               <X className="size-4.5" strokeWidth={1.5} />
             </button>

@@ -13,9 +13,12 @@ export function Hero() {
       id="top"
       className="flex min-h-[100dvh] scroll-mt-24 items-center px-6 pb-8 pt-24 sm:px-10 lg:pt-16"
     >
-      <div className="mx-auto grid w-full max-w-6xl items-center lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <div className="relative z-10">
-          <h1 className="text-balance text-6xl font-semibold leading-none tracking-[-0.06em] text-foreground sm:text-8xl lg:text-[clamp(5rem,7.6vw,7.25rem)]">
+          <p className="mb-4 font-mono text-xs text-muted-foreground">
+            {siteConfig.location}
+          </p>
+          <h1 className="text-balance text-6xl font-bold leading-[0.95] tracking-[-0.055em] text-foreground sm:text-8xl lg:text-[clamp(5rem,7.6vw,7.25rem)]">
             {siteConfig.name}
           </h1>
           <p className="mt-5 text-xl font-medium tracking-tight text-brand sm:text-2xl">
@@ -31,7 +34,7 @@ export function Hero() {
               href="#contact"
               className={cn(
                 buttonVariants({ size: 'lg' }),
-                'h-11 rounded-full px-6',
+                'h-11 rounded-md px-6',
               )}
             >
               Email me
@@ -41,7 +44,7 @@ export function Hero() {
               download
               className={cn(
                 buttonVariants({ variant: 'outline', size: 'lg' }),
-                'h-11 gap-2 rounded-full px-6',
+                'h-11 gap-2 rounded-md px-6',
               )}
             >
               Résumé

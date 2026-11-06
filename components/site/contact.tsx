@@ -30,7 +30,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 border-t border-white/8 px-6 py-24 sm:px-10 sm:py-32"
+      className="scroll-mt-20 border-t border-border px-6 py-24 sm:px-10 sm:py-32"
     >
       <div className="mx-auto w-full max-w-4xl">
         <SectionHeading
@@ -52,7 +52,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.18}>
-          <div className="mt-14 divide-y divide-white/8 border-t border-white/8">
+          <div className="mt-14 divide-y divide-border border-t border-border">
             {links.map(({ label, value, href, icon: Icon }) => (
               <a
                 key={label}

@@ -45,7 +45,15 @@ export function GalaxyBackground() {
     let heroHeight = 0;
     let visible = true;
     let accent = '231,154,121';
+    let ink = '62,78,121';
+    let dark = false;
     const readAccent = () => {
+      dark = document.documentElement.classList.contains('dark');
+      ink = getComputedStyle(document.documentElement)
+        .getPropertyValue('--star-ink')
+        .trim()
+        .split(/\s+/)
+        .join(',');
       accent = getComputedStyle(document.documentElement)
         .getPropertyValue('--accent-rgb')
         .trim()
@@ -112,8 +120,8 @@ export function GalaxyBackground() {
         const opacity =
           (0.35 + (Math.sin(t * 0.45 + star.phase) * 0.5 + 0.5) * 0.4) *
           leftFade;
-        const color = i % 4 === 0 ? accent : '195,206,229';
-        if (i % 9 === 0) {
+        const color = i % 4 === 0 ? accent : ink;
+        if (dark && i % 9 === 0) {
           const glow = context.createRadialGradient(
             point.x,
             point.y,
@@ -155,6 +163,7 @@ export function GalaxyBackground() {
     });
     visibility.observe(container);
     window.addEventListener('accentchange', redraw);
+    window.addEventListener('themechange', redraw);
     query.addEventListener('change', motionChange);
     readAccent();
     resize();
@@ -163,6 +172,7 @@ export function GalaxyBackground() {
       observer.disconnect();
       visibility.disconnect();
       window.removeEventListener('accentchange', redraw);
+      window.removeEventListener('themechange', redraw);
       query.removeEventListener('change', motionChange);
     };
   }, []);

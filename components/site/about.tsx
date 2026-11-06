@@ -10,10 +10,10 @@ export function About() {
       <div className="mx-auto w-full max-w-5xl">
         <ScrollWordReveal text="I'm a Computer Science student at UC San Diego focused on backend systems, applied machine learning, and full-stack development." />
 
-        <div className="grid gap-12 border-t border-white/8 pt-12 md:grid-cols-2">
+        <div className="grid gap-12 border-t border-border pt-12 md:grid-cols-2">
           <Reveal delay={0.1}>
             <div className="flex items-start gap-3">
-              <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-white/8 text-muted-foreground">
+              <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground">
                 <GraduationCap className="size-4" strokeWidth={1.5} />
               </span>
               <div>
@@ -35,9 +35,9 @@ export function About() {
 
           <Reveal
             delay={0.18}
-            className="md:border-l md:border-white/8 md:pl-12"
+            className="md:border-l md:border-border md:pl-12"
           >
-            <div className="divide-y divide-white/8">
+            <div className="divide-y divide-border">
               {Object.entries(skills).map(([group, items]) => (
                 <div
                   key={group}

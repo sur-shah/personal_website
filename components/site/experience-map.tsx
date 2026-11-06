@@ -146,7 +146,7 @@ export function ExperienceMap() {
                 r="4.5"
               />
               <text
-                className="fill-white/75 text-[24px] font-medium tracking-[-0.01em]"
+                className="fill-foreground text-[24px] font-medium tracking-[-0.01em]"
                 dominantBaseline="middle"
                 textAnchor={'anchor' in location ? location.anchor : 'start'}
                 x={location.x + location.labelX}
@@ -181,7 +181,7 @@ export function ExperienceMap() {
       {activeLocation && (
         <section
           aria-label={`${activeLocation.name} experience`}
-          className="experience-map-detail relative z-20 mt-4 w-full rounded-xl border border-brand/35 bg-[#14151a] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.35)] sm:mt-0 sm:w-64"
+          className="experience-map-detail relative z-20 mt-4 w-full rounded-xl border border-brand/35 bg-popover p-4 shadow-lg sm:mt-0 sm:w-64"
           data-side={activeLocation.side}
           id="experience-map-detail"
           style={

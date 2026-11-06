@@ -8,7 +8,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-space-grotesk);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -50,27 +50,32 @@
 }
 
 body {
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  color-scheme: light;
+  --accent-rgb: 231 154 121;
+  --accent-hex: #e79a79;
+  --brand: color-mix(in srgb, var(--accent-hex) 34%, #202438);
+  --star-ink: 62 78 121;
+  --background: #f7f5ee;
+  --foreground: #202438;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: #fffdf7;
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: #292e50;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --muted-foreground: #55596c;
+  --accent: #e9e9f2;
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: #d7d6db;
+  --input: #d7d6db;
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -89,24 +94,24 @@ body {
 }
 
 .dark {
-  --accent-rgb: 231 154 121;
-  --accent-hex: #e79a79;
-  --background: oklch(0.065 0.008 205);
-  --foreground: oklch(0.96 0 0);
-  --card: oklch(0.09 0 0);
+  color-scheme: dark;
+  --star-ink: 195 206 229;
+  --background: #151823;
+  --foreground: #f2f0ed;
+  --card: #1c2131;
   --card-foreground: oklch(0.96 0 0);
-  --popover: oklch(0.09 0 0);
+  --popover: #23283a;
   --popover-foreground: oklch(0.96 0 0);
   --primary: oklch(0.96 0 0);
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.16 0 0);
   --secondary-foreground: oklch(0.96 0 0);
   --muted: oklch(0.14 0 0);
-  --muted-foreground: oklch(0.64 0 0);
-  --accent: oklch(0.16 0 0);
+  --muted-foreground: #adb2c3;
+  --accent: #282e41;
   --accent-foreground: oklch(0.96 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 8%);
+  --border: #353a4d;
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.87 0 0);
@@ -139,8 +144,11 @@ html[data-accent='lunar'] {
 }
 
 .accent-star-core {
-  box-shadow: 0 0 10px 2px currentColor;
+  box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 55%, var(--foreground));
   transition: transform 400ms ease;
+}
+.dark .accent-star-core {
+  box-shadow: 0 0 8px 1px currentColor;
 }
 .accent-star-orbit {
   transition:
@@ -162,6 +170,12 @@ html[data-accent='lunar'] {
     rgb(var(--accent-rgb) / 0.09),
     transparent 62%
   );
+}
+.planet-stage {
+  background: color-mix(in srgb, var(--background) 86%, #6c83cf);
+}
+.locations-surface {
+  background: color-mix(in srgb, var(--background) 86%, var(--accent-hex));
 }
 .map-route {
   fill: none;
@@ -199,7 +213,6 @@ html[data-accent='lunar'] {
   }
   html {
     @apply font-sans scroll-smooth;
-    color-scheme: dark;
     scroll-padding-top: 6rem;
     overflow-x: hidden;
     overscroll-behavior-x: none;
@@ -269,8 +282,8 @@ html[data-accent='lunar'] {
 }
 
 .experience-map-state {
-  fill: rgb(255 255 255 / 1.8%);
-  stroke: rgb(255 255 255 / 12%);
+  fill: color-mix(in srgb, var(--foreground) 4%, transparent);
+  stroke: color-mix(in srgb, var(--foreground) 25%, transparent);
   transition:
     fill 240ms ease,
     stroke 240ms ease,
@@ -279,7 +292,7 @@ html[data-accent='lunar'] {
 
 .experience-map-state[data-featured='true'] {
   fill: rgb(var(--accent-rgb) / 8%);
-  stroke: rgb(var(--accent-rgb) / 45%);
+  stroke: color-mix(in srgb, var(--brand) 65%, transparent);
 }
 
 .experience-map-state[data-lit='true'] {
