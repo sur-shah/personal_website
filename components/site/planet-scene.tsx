@@ -155,7 +155,7 @@ export function PlanetScene() {
   }, []);
 
   return (
-    <figure className="planet-stage relative h-[270px] w-full overflow-hidden border border-border sm:h-[410px] lg:h-[min(62dvh,560px)]">
+    <figure className="planet-stage relative h-[270px] w-full sm:h-[410px] lg:h-[min(62dvh,560px)]">
       <div className="planet-halo pointer-events-none absolute inset-0" />
       <div
         ref={containerRef}
@@ -180,9 +180,8 @@ export function PlanetScene() {
       />
       <figcaption
         aria-live="polite"
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-between gap-2 border-t border-border px-3 py-2 font-mono text-[10px] text-muted-foreground sm:px-4 sm:text-xs"
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center gap-2 px-3 py-2 font-mono text-[10px] text-muted-foreground sm:text-xs"
       >
-        <span>Procedural planet</span>
         <span>{paused ? 'Rotation paused' : 'Select to pause'}</span>
       </figcaption>
     </figure>

@@ -43,9 +43,10 @@ export function GalaxyBackground() {
     let width = 0;
     let height = 0;
     let heroHeight = 0;
+    let planetTop = 0;
     let visible = true;
     let accent = '231,154,121';
-    let ink = '62,78,121';
+    let ink = '24,24,28';
     let dark = false;
     const readAccent = () => {
       dark = document.documentElement.classList.contains('dark');
@@ -65,6 +66,11 @@ export function GalaxyBackground() {
       height = container.clientHeight;
       heroHeight =
         document.getElementById('top')?.clientHeight || window.innerHeight;
+      const planet = document.querySelector('.planet-stage');
+      planetTop = planet
+        ? planet.getBoundingClientRect().top -
+          container.getBoundingClientRect().top
+        : heroHeight * 0.55;
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
@@ -93,9 +99,35 @@ export function GalaxyBackground() {
             Math.cos(t * 0.06 + star.phase) * 7,
         };
       });
-      // A handful of connections gives the stars a chart-like structure.
-      context.lineWidth = 0.6;
+      const chartNodes = points.filter(
+        (point, index) =>
+          index % 2 === 0 &&
+          (width >= 1024 ? point.x > width * 0.51 : point.y > planetTop),
+      );
+      context.lineWidth = dark ? 0.6 : 0.85;
+      if (!dark) {
+        context.strokeStyle = `rgba(${ink},0.29)`;
+        context.beginPath();
+        chartNodes.forEach((point, index) => {
+          let nearest: (typeof points)[number] | undefined;
+          let distance = Math.min(155, width * 0.35);
+          for (let i = index + 1; i < chartNodes.length; i++) {
+            const next = chartNodes[i];
+            const gap = Math.hypot(point.x - next.x, point.y - next.y);
+            if (gap < distance) {
+              nearest = next;
+              distance = gap;
+            }
+          }
+          if (nearest) {
+            context.moveTo(point.x, point.y);
+            context.lineTo(nearest.x, nearest.y);
+          }
+        });
+        context.stroke();
+      }
       points.forEach((point, i) => {
+        if (!dark) return;
         if (i % 7 !== 0) return;
         const next = points[(i + 7) % points.length];
         if (
@@ -117,10 +149,17 @@ export function GalaxyBackground() {
           width > 900
             ? Math.min(1, Math.max(0.1, (point.x / width - 0.25) * 3))
             : 0.7;
-        const opacity =
-          (0.35 + (Math.sin(t * 0.45 + star.phase) * 0.5 + 0.5) * 0.4) *
-          leftFade;
-        const color = i % 4 === 0 ? accent : ink;
+        const inChart =
+          width >= 1024 ? point.x > width * 0.51 : point.y > planetTop;
+        const opacity = dark
+          ? (0.35 + (Math.sin(t * 0.45 + star.phase) * 0.5 + 0.5) * 0.4) *
+            leftFade
+          : inChart
+            ? i % 2 === 0
+              ? 0.78
+              : 0.4
+            : 0.14;
+        const color = dark && i % 4 === 0 ? accent : ink;
         if (dark && i % 9 === 0) {
           const glow = context.createRadialGradient(
             point.x,
@@ -137,7 +176,13 @@ export function GalaxyBackground() {
         }
         context.fillStyle = `rgba(${color},${opacity})`;
         context.beginPath();
-        context.arc(point.x, point.y, star.size, 0, Math.PI * 2);
+        context.arc(
+          point.x,
+          point.y,
+          !dark && inChart ? star.size * 1.3 : star.size,
+          0,
+          Math.PI * 2,
+        );
         context.fill();
       });
       if (visible && !reduced) frame = requestAnimationFrame(draw);

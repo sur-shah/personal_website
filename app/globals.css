@@ -58,7 +58,7 @@ body {
   --accent-rgb: 231 154 121;
   --accent-hex: #e79a79;
   --brand: color-mix(in srgb, var(--accent-hex) 34%, #202438);
-  --star-ink: 62 78 121;
+  --star-ink: 24 24 28;
   --background: #f7f5ee;
   --foreground: #202438;
   --card: oklch(1 0 0);
@@ -96,11 +96,11 @@ body {
 .dark {
   color-scheme: dark;
   --star-ink: 195 206 229;
-  --background: #151823;
+  --background: oklch(0.065 0.008 205);
   --foreground: #f2f0ed;
-  --card: #1c2131;
+  --card: #14151a;
   --card-foreground: oklch(0.96 0 0);
-  --popover: #23283a;
+  --popover: #191a20;
   --popover-foreground: oklch(0.96 0 0);
   --primary: oklch(0.96 0 0);
   --primary-foreground: oklch(0.145 0 0);
@@ -108,10 +108,10 @@ body {
   --secondary-foreground: oklch(0.96 0 0);
   --muted: oklch(0.14 0 0);
   --muted-foreground: #adb2c3;
-  --accent: #282e41;
+  --accent: #202126;
   --accent-foreground: oklch(0.96 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #353a4d;
+  --border: #292a30;
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.87 0 0);
@@ -171,11 +171,11 @@ html[data-accent='lunar'] {
     transparent 62%
   );
 }
-.planet-stage {
-  background: color-mix(in srgb, var(--background) 86%, #6c83cf);
-}
 .locations-surface {
   background: color-mix(in srgb, var(--background) 86%, var(--accent-hex));
+}
+.dark .locations-surface {
+  background: transparent;
 }
 .map-route {
   fill: none;
