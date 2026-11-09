@@ -1,7 +1,8 @@
 'use client';
 
-import { Orbit, Pause, Play } from 'lucide-react';
+import { Pause, Play } from 'lucide-react';
 import { useState } from 'react';
+import { VinylDisc } from '@/components/site/vinyl-disc';
 
 export function VinylRecord() {
   const [paused, setPaused] = useState(false);
@@ -13,17 +14,7 @@ export function VinylRecord() {
       data-paused={paused}
     >
       <div className="vinyl-record__stage" aria-hidden="true">
-        <div className="vinyl-record__disc">
-          <div className="vinyl-record__surface">
-            <div className="vinyl-record__label">
-              <span className="vinyl-record__name">Sur Shah</span>
-              <Orbit className="vinyl-record__orbit" strokeWidth={1.1} />
-              <span className="vinyl-record__side">Side A</span>
-              <span className="vinyl-record__spindle" />
-            </div>
-          </div>
-          <div className="vinyl-record__reflection" />
-        </div>
+        <VinylDisc />
       </div>
       <figcaption className="motion-reduce:hidden">
         <button
