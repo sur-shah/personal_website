@@ -1,20 +1,55 @@
+const lampArm = 'M88 114V40C88 21 84 14 78 14H54C51.8 14 50 20 50 30V44';
+
 export function TurntableLamp() {
   return (
-    <div className="turntable-lamp" aria-hidden="true">
-      <span className="turntable-lamp__cord" />
-      <span className="turntable-lamp__socket" />
-      <span className="turntable-lamp__glass">
-        <svg viewBox="0 0 24 26" fill="none" aria-hidden="true">
-          <path
-            d="M8 1v13l2 4 2-5 2 5 2-4V1"
-            stroke="currentColor"
-            strokeWidth="1.25"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-    </div>
+    <>
+      <svg
+        className="turntable-lamp__support"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <ellipse
+          cx="88"
+          cy="114"
+          rx="2.5"
+          ry="4"
+          fill="#29251d"
+          stroke="#73624b"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d={lampArm}
+          fill="none"
+          stroke="#4e4333"
+          strokeWidth="4"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d={lampArm}
+          fill="none"
+          stroke="#ab9470"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+      <div className="turntable-lamp" aria-hidden="true">
+        <span className="turntable-lamp__socket" />
+        <span className="turntable-lamp__glass">
+          <svg viewBox="0 0 24 26" fill="none" aria-hidden="true">
+            <path
+              d="M8 1v13l2 4 2-5 2 5 2-4V1"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </div>
+    </>
   );
 }
 

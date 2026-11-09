@@ -386,9 +386,10 @@ html[data-accent='lunar'] {
 }
 
 .turntable {
+  --lamp-height: clamp(4.25rem, 9vw, 6.5rem);
   position: relative;
   isolation: isolate;
-  padding-top: clamp(4.25rem, 9vw, 6.5rem);
+  padding-top: var(--lamp-height);
   container-type: inline-size;
 }
 
@@ -487,18 +488,21 @@ html[data-accent='lunar'] {
   z-index: 1;
   top: 0;
   left: 50%;
-  bottom: calc(100% - clamp(4.25rem, 9vw, 6.5rem));
+  height: var(--lamp-height);
   width: clamp(24px, 8cqi, 37px);
   translate: -50% -0.65rem;
   pointer-events: none;
 }
 
-.turntable-lamp__cord {
+.turntable-lamp__support {
   position: absolute;
-  inset: 0 auto 44% 50%;
-  width: 2px;
-  translate: -50% 0;
-  background: linear-gradient(transparent, #6b6557 68%, #605541);
+  z-index: 1;
+  inset: 0 0 auto;
+  width: 100%;
+  height: var(--lamp-height);
+  overflow: visible;
+  translate: 0 -0.65rem;
+  pointer-events: none;
 }
 
 .turntable-lamp__socket {
