@@ -5,6 +5,7 @@ import { Download, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 import { GithubMark } from '@/components/site/icons';
+import { LocalClock } from '@/components/site/local-clock';
 import { ThemeToggle } from '@/components/site/theme-toggle';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/lib/site-config';
@@ -17,12 +18,16 @@ export function Navbar() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95">
         <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6 sm:px-10">
-          <a
-            href="#top"
-            className="focus-ring rounded-md text-sm font-semibold tracking-tight text-foreground"
-          >
-            Sur Shah
-          </a>
+          <div className="flex shrink-0 items-center gap-3">
+            <a
+              href="#top"
+              className="focus-ring whitespace-nowrap rounded-md text-sm font-semibold tracking-tight text-foreground"
+            >
+              Sur Shah
+            </a>
+            <span aria-hidden="true" className="h-3 w-px bg-border" />
+            <LocalClock />
+          </div>
 
           <div className="hidden items-center gap-1 md:flex">
             {siteConfig.nav.map((item) => (
