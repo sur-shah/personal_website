@@ -100,7 +100,7 @@ export function VinylRecord() {
 
   return (
     <figure
-      className="vinyl-record mx-auto grid w-full max-w-[11rem] justify-items-center gap-3 md:max-w-[16rem]"
+      className="vinyl-record mx-auto grid w-full max-w-[19rem] justify-items-center gap-3 sm:max-w-[26rem]"
       data-paused={paused}
     >
       <button

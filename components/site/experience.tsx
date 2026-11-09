@@ -7,12 +7,12 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="border-t border-border px-6 py-9 sm:px-10 sm:py-12"
+      className="scroll-mt-20 border-t border-border px-6 py-24 sm:px-10 sm:py-32"
     >
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-4xl">
         <SectionHeading title="Experience" />
 
-        <div className="mt-6 divide-y divide-border border-t border-border">
+        <div className="mt-14 divide-y divide-border border-t border-border">
           {experience.map((entry, i) => (
             <Reveal key={entry.org} delay={i * 0.06}>
               <div className="grid gap-4 py-8 sm:grid-cols-[9rem_1fr] sm:gap-8">

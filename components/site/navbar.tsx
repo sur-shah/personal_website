@@ -2,8 +2,6 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { Download, Menu, X } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 import { GithubMark } from '@/components/site/icons';
@@ -12,34 +10,29 @@ import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
 
-const MotionLink = motion.create(Link);
-
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95">
         <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6 sm:px-10">
-          <Link
-            href="/"
-            onClick={() => setOpen(false)}
+          <a
+            href="#top"
             className="focus-ring rounded-md text-sm font-semibold tracking-tight text-foreground"
           >
             Sur Shah
-          </Link>
+          </a>
 
           <div className="hidden items-center gap-1 md:flex">
             {siteConfig.nav.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
-                aria-current={pathname === item.href ? 'page' : undefined}
-                className="focus-ring rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground aria-[current=page]:text-brand"
+                className="focus-ring rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -108,10 +101,9 @@ export function Navbar() {
             </button>
 
             {siteConfig.nav.map((item, i) => (
-              <MotionLink
+              <motion.a
                 key={item.href}
                 href={item.href}
-                aria-current={pathname === item.href ? 'page' : undefined}
                 onClick={() => setOpen(false)}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -120,10 +112,10 @@ export function Navbar() {
                   delay: 0.1 + i * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="focus-ring rounded-md text-3xl font-medium tracking-tight text-foreground aria-[current=page]:text-brand"
+                className="focus-ring rounded-md text-3xl font-medium tracking-tight text-foreground"
               >
                 {item.label}
-              </MotionLink>
+              </motion.a>
             ))}
 
             <motion.a

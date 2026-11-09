@@ -7,8 +7,8 @@ export const siteConfig = {
   linkedin: 'https://www.linkedin.com/in/sur-r-shah/',
   resumeUrl: '/resume.pdf',
   nav: [
-    { label: 'Experience', href: '/#experience' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'About', href: '#about' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Contact', href: '#contact' },
   ],
 } as const;
