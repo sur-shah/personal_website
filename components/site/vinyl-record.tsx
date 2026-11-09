@@ -9,7 +9,7 @@ export function VinylRecord() {
 
   return (
     <figure
-      className="vinyl-record mx-auto grid w-full max-w-[26rem] justify-items-center gap-3"
+      className="vinyl-record mx-auto grid w-full max-w-[19rem] justify-items-center gap-3 sm:max-w-[26rem]"
       data-paused={paused}
     >
       <div className="vinyl-record__stage" aria-hidden="true">

@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[min(80svh,52rem)] items-center overflow-hidden pb-12 pt-28 sm:pb-16 sm:pt-32 lg:py-24"
+      className="relative isolate flex min-h-svh items-center overflow-hidden pb-8 pt-24 sm:pb-16 sm:pt-32"
     >
       <HeroGreenery />
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-6 px-6 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
