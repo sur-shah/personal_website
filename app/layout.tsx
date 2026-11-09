@@ -25,17 +25,7 @@ export const metadata: Metadata = {
     'Sur Shah is a software engineer studying Computer Science at UC San Diego, building fault-tolerant systems and ML-driven products.',
 };
 
-export const viewport: Viewport = { colorScheme: 'light dark' };
-
-const themeBootstrap = `(() => {
-  const theme = matchMedia('(prefers-color-scheme: dark)');
-  const sync = () => {
-    document.documentElement.classList.toggle('dark', theme.matches);
-    window.dispatchEvent(new Event('themechange'));
-  };
-  sync();
-  theme.addEventListener('change', sync);
-})();`;
+export const viewport: Viewport = { colorScheme: 'light' };
 
 export default function RootLayout({
   children,
@@ -43,10 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
-      </head>
+    <html lang="en">
       <body
         className={`${spaceGrotesk.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
       >
