@@ -1,12 +1,11 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Download, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 import { GithubMark } from '@/components/site/icons';
 import { LocalClock } from '@/components/site/local-clock';
-import { ThemeToggle } from '@/components/site/theme-toggle';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
@@ -42,7 +41,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <a
               href={siteConfig.github}
               target="_blank"
@@ -54,17 +52,6 @@ export function Navbar() {
               )}
             >
               <GithubMark className="size-4" />
-            </a>
-            <a
-              href={siteConfig.resumeUrl}
-              download
-              className={cn(
-                buttonVariants({ size: 'sm' }),
-                'hidden h-9 gap-1.5 rounded-md px-4 md:inline-flex',
-              )}
-            >
-              Résumé
-              <Download className="size-3.5" strokeWidth={1.5} />
             </a>
             <button
               type="button"
@@ -122,22 +109,6 @@ export function Navbar() {
                 {item.label}
               </motion.a>
             ))}
-
-            <motion.a
-              href={siteConfig.resumeUrl}
-              download
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.35,
-                delay: 0.1 + siteConfig.nav.length * 0.06,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="focus-ring mt-4 flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
-            >
-              Download résumé
-              <Download className="size-3.5" strokeWidth={1.5} />
-            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

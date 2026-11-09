@@ -27,13 +27,15 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { colorScheme: 'light dark' };
 
-const themeBootstrap = `try {
-  var preference = localStorage.getItem('sur-theme');
-  document.documentElement.classList.toggle('dark',
-    preference === 'dark' || (preference !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches));
-} catch {
-  document.documentElement.classList.toggle('dark', matchMedia('(prefers-color-scheme: dark)').matches);
-}`;
+const themeBootstrap = `(() => {
+  const theme = matchMedia('(prefers-color-scheme: dark)');
+  const sync = () => {
+    document.documentElement.classList.toggle('dark', theme.matches);
+    window.dispatchEvent(new Event('themechange'));
+  };
+  sync();
+  theme.addEventListener('change', sync);
+})();`;
 
 export default function RootLayout({
   children,
