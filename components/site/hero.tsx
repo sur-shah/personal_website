@@ -1,8 +1,3 @@
-import { Download } from 'lucide-react';
-import { AccentConstellation } from '@/components/site/accent-constellation';
-
-import { GithubMark } from '@/components/site/icons';
-import { PlanetScene } from '@/components/site/planet-scene';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
@@ -11,61 +6,44 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="flex min-h-[100dvh] scroll-mt-24 items-center px-6 pb-8 pt-24 sm:px-10 lg:pt-16"
+      className="flex min-h-[min(80svh,52rem)] items-center pb-16 pt-32 sm:pb-20 sm:pt-36"
     >
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-        <div className="relative z-10">
-          <p className="mb-4 font-mono text-xs text-muted-foreground">
+      <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
+        <div className="max-w-xl">
+          <p className="mb-5 font-mono text-xs font-medium tracking-wide text-brand">
             {siteConfig.location}
           </p>
-          <h1 className="text-balance text-6xl font-bold leading-[0.95] tracking-[-0.055em] text-foreground sm:text-8xl lg:text-[clamp(5rem,7.6vw,7.25rem)]">
+          <h1 className="text-6xl font-semibold leading-none tracking-[-0.06em] text-foreground sm:text-8xl">
             {siteConfig.name}
           </h1>
-          <p className="mt-5 text-xl font-medium tracking-tight text-brand sm:text-2xl">
-            {siteConfig.role}
-          </p>
-          <p className="mt-7 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
-            Computer Science at UC San Diego. I build fault-tolerant systems, ML
-            pipelines, and full-stack products.
+          <p className="mt-6 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            I study computer science at UC San Diego and build backend systems
+            and reliable AI workflows.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <a
-              href="#contact"
+              href={`mailto:${siteConfig.email}`}
               className={cn(
                 buttonVariants({ size: 'lg' }),
-                'h-11 rounded-md px-6',
+                'h-11 rounded-full px-5',
               )}
             >
-              Email me
-            </a>
-            <a
-              href={siteConfig.resumeUrl}
-              download
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'lg' }),
-                'h-11 gap-2 rounded-md px-6',
-              )}
-            >
-              Résumé
-              <Download className="size-4" strokeWidth={1.5} />
+              Email
             </a>
             <a
               href={siteConfig.github}
               target="_blank"
               rel="noreferrer"
-              aria-label="GitHub"
               className={cn(
-                buttonVariants({ variant: 'ghost', size: 'icon-lg' }),
-                'size-11 rounded-full',
+                buttonVariants({ variant: 'outline', size: 'lg' }),
+                'h-11 rounded-full px-5',
               )}
             >
-              <GithubMark className="size-4.5" />
+              GitHub
             </a>
           </div>
-          <AccentConstellation />
         </div>
-        <PlanetScene />
       </div>
     </section>
   );
