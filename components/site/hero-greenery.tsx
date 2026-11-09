@@ -186,6 +186,12 @@ export function HeroGreenery() {
     function move(event: PointerEvent) {
       if (motion.matches || !fine.matches || event.pointerType === 'touch')
         return;
+      if (
+        event.buttons !== 0 &&
+        event.target instanceof Element &&
+        event.target.closest('.vinyl-record__stage')
+      )
+        return;
       const now = performance.now();
       const { clientX: x, clientY: y } = event;
       if (

@@ -360,6 +360,7 @@ html[data-accent='lunar'] {
 
 .vinyl-record__disc {
   position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -402,7 +403,8 @@ html[data-accent='lunar'] {
   animation: vinyl-rotation 19s linear infinite;
 }
 
-.vinyl-record[data-paused='true'] .vinyl-record__surface {
+.vinyl-record[data-paused='true'] .vinyl-record__surface,
+.vinyl-record__stage[data-manual-spin] .vinyl-record__surface {
   animation-play-state: paused;
 }
 
