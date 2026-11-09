@@ -431,11 +431,9 @@ html[data-accent='lunar'] {
 
 .vinyl-record__label {
   position: relative;
-  display: grid;
   width: 38%;
   aspect-ratio: 1;
-  justify-items: center;
-  align-content: space-evenly;
+  container-type: inline-size;
   border: 1px solid #7b9d87;
   border-radius: 50%;
   background: radial-gradient(circle, #37644a, #1d422d 76%);
@@ -446,22 +444,35 @@ html[data-accent='lunar'] {
   line-height: 1;
 }
 
+.vinyl-record__name,
+.vinyl-record__orbit,
+.vinyl-record__side {
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+}
+
 .vinyl-record__name {
-  font-size: clamp(0.75rem, 1.6vw, 1.15rem);
+  top: 25%;
+  font-size: 11cqi;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .vinyl-record__orbit {
-  width: 34%;
+  top: 50%;
+  width: 31%;
   height: auto;
   opacity: 0.8;
 }
 
 .vinyl-record__side {
+  top: 75%;
   font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(0.5rem, 1vw, 0.65rem);
+  font-size: 6.8cqi;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .vinyl-record__spindle {
@@ -514,14 +525,6 @@ html[data-accent='lunar'] {
     box-shadow:
       0 0 0 2px #0d110e,
       inset 0 0 0 2px #173d29;
-  }
-
-  .vinyl-intro .vinyl-record__name {
-    font-size: 0.48rem;
-  }
-
-  .vinyl-intro .vinyl-record__side {
-    font-size: 0.35rem;
   }
 }
 
