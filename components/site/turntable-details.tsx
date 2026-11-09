@@ -1,26 +1,3 @@
-export function TurntableLamp() {
-  return (
-    <>
-      <span className="turntable-lamp__shelf" aria-hidden="true" />
-      <div className="turntable-lamp" aria-hidden="true">
-        <span className="turntable-lamp__cord" />
-        <span className="turntable-lamp__socket" />
-        <span className="turntable-lamp__glass">
-          <svg viewBox="0 0 24 26" fill="none" aria-hidden="true">
-            <path
-              d="M8 1v13l2 4 2-5 2 5 2-4V1"
-              stroke="currentColor"
-              strokeWidth="1.25"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </div>
-    </>
-  );
-}
-
 export function TurntableTonearm() {
   return (
     <svg className="turntable-arm" viewBox="0 0 460 380" aria-hidden="true">
@@ -42,18 +19,6 @@ export function TurntableTonearm() {
         r="18"
         fill="url(#tonearm-pivot)"
         stroke="#999481"
-      />
-      <path
-        d="M396 151v90"
-        stroke="#11160f"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M392 207h8"
-        stroke="#77796b"
-        strokeWidth="3"
-        strokeLinecap="round"
       />
       <g className="turntable-arm__moving">
         <path

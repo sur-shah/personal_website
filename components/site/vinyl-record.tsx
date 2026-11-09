@@ -3,10 +3,8 @@
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { VinylDisc } from '@/components/site/vinyl-disc';
-import {
-  TurntableLamp,
-  TurntableTonearm,
-} from '@/components/site/turntable-details';
+import { TurntableTonearm } from '@/components/site/turntable-details';
+import { createVinylAudio } from '@/lib/vinyl-audio';
 
 function pointerAngle(event: PointerEvent<HTMLButtonElement>) {
   const bounds = event.currentTarget.getBoundingClientRect();
@@ -17,6 +15,8 @@ function pointerAngle(event: PointerEvent<HTMLButtonElement>) {
 
 export function VinylRecord() {
   const [paused, setPaused] = useState(false);
+  const [volume, setVolume] = useState(0);
+  const audio = useRef<ReturnType<typeof createVinylAudio> | null>(null);
   const action = paused ? 'Resume record rotation' : 'Pause record rotation';
   const stage = useRef<HTMLButtonElement>(null);
   const surface = useRef<HTMLSpanElement>(null);
@@ -29,7 +29,40 @@ export function VinylRecord() {
     speed: number;
   } | null>(null);
 
-  useEffect(() => () => cancelAnimationFrame(frame.current), []);
+  useEffect(
+    () => () => {
+      cancelAnimationFrame(frame.current);
+      const current = audio.current;
+      audio.current = null;
+      if (current) void current.context.close().catch(() => {});
+    },
+    [],
+  );
+
+  useEffect(() => {
+    const current = audio.current;
+    if (!current) return;
+    current.gain.gain.setTargetAtTime(
+      paused ? 0 : (volume / 100) ** 1.6,
+      current.context.currentTime,
+      0.035,
+    );
+  }, [paused, volume]);
+
+  function changeVolume(value: number) {
+    if (value > 0) {
+      try {
+        audio.current ??= createVinylAudio();
+        if (audio.current.context.state !== 'running') {
+          void audio.current.context.resume().catch(() => setVolume(0));
+        }
+      } catch {
+        setVolume(0);
+        return;
+      }
+    }
+    setVolume(value);
+  }
 
   function rotateBy(radians: number) {
     offset.current = (offset.current + radians) % (Math.PI * 2);
@@ -108,7 +141,6 @@ export function VinylRecord() {
       aria-label="Interactive turntable"
       data-paused={paused}
     >
-      <TurntableLamp />
       <div className="turntable__deck">
         <span className="turntable__platter" aria-hidden="true" />
         <button
@@ -131,7 +163,22 @@ export function VinylRecord() {
           <VinylDisc surfaceRef={surface} />
         </button>
         <TurntableTonearm />
-        <span className="turntable__light" aria-hidden="true" />
+        <label className="turntable__volume">
+          <input
+            className="turntable__volume-input focus-ring"
+            type="range"
+            min="0"
+            max="100"
+            step="5"
+            value={volume}
+            aria-label="Vinyl crackle volume"
+            aria-valuetext={volume === 0 ? 'Muted' : `${volume}%`}
+            onChange={(event) =>
+              changeVolume(event.currentTarget.valueAsNumber)
+            }
+          />
+          <span aria-hidden="true">VOL</span>
+        </label>
         <button
           type="button"
           aria-label={action}
