@@ -1,4 +1,5 @@
 import { buttonVariants } from '@/components/ui/button';
+import { PlanetScene } from '@/components/site/planet-scene';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
 
@@ -6,9 +7,9 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="flex min-h-[min(80svh,52rem)] items-center pb-16 pt-32 sm:pb-20 sm:pt-36"
+      className="flex min-h-[min(80svh,52rem)] items-center pb-12 pt-28 sm:pb-16 sm:pt-32 lg:py-24"
     >
-      <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-6 px-6 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         <div className="max-w-xl">
           <p className="mb-5 font-mono text-xs font-medium tracking-wide text-brand">
             {siteConfig.location}
@@ -44,6 +45,7 @@ export function Hero() {
             </a>
           </div>
         </div>
+        <PlanetScene />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Pause, Play } from 'lucide-react';
 import * as THREE from 'three';
 import { createMineralTextures } from '@/components/site/mineral-texture';
 
@@ -37,11 +38,11 @@ export function PlanetScene() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 40);
     camera.position.z = 7.4;
-    scene.add(new THREE.AmbientLight(0xa5aecb, 0.85));
-    const key = new THREE.DirectionalLight(0xe4eaff, 3.8);
+    scene.add(new THREE.AmbientLight(0xdbead8, 0.95));
+    const key = new THREE.DirectionalLight(0xfff2d9, 3.4);
     key.position.set(-3, 4, 5);
     scene.add(key);
-    const rim = new THREE.DirectionalLight(0xe79a79, 3.3);
+    const rim = new THREE.DirectionalLight(0xa9d4b7, 2.8);
     rim.position.set(4, 0.3, -1);
     scene.add(rim);
     const maps = createMineralTextures();
@@ -63,47 +64,18 @@ export function PlanetScene() {
     const group = new THREE.Group();
     group.add(world);
     scene.add(group);
-    const orbitGeometry = new THREE.BufferGeometry().setFromPoints(
-      Array.from({ length: 161 }, (_, i) => {
-        const angle = (i / 160) * Math.PI * 2;
-        return new THREE.Vector3(
-          Math.cos(angle) * 1.93,
-          Math.sin(angle) * 1.93,
-          0,
-        );
-      }),
-    );
-    const orbitMaterial = new THREE.LineBasicMaterial({
-      color: 0xe79a79,
-      transparent: true,
-      opacity: 0.18,
-    });
-    const orbit = new THREE.Line(orbitGeometry, orbitMaterial);
-    orbit.rotation.set(1.15, 0.3, -0.32);
-    group.add(orbit);
-    const targetColor = new THREE.Color();
-    const readAccent = () =>
-      targetColor.set(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue('--accent-hex')
-          .trim() || '#e79a79',
-      );
-    readAccent();
-    window.addEventListener('accentchange', readAccent);
     let frame = 0;
     let visible = true;
     let previous = 0;
     const draw = (time: number) => {
       const delta = Math.min((time - previous) / 1000 || 0, 0.05);
       previous = time;
-      if (!reduced && !pausedRef.current) world.rotation.y += delta * 0.065;
+      if (!reduced && !pausedRef.current) world.rotation.y += delta * 0.13;
       const ease = reduced ? 1 : 1 - Math.exp(-delta * 3);
       group.rotation.y +=
         ((reduced ? 0 : pointer.current.x * 0.17) - group.rotation.y) * ease;
       group.rotation.x +=
         ((reduced ? 0 : -pointer.current.y * 0.12) - group.rotation.x) * ease;
-      rim.color.lerp(targetColor, reduced ? 1 : 0.06);
-      orbitMaterial.color.copy(rim.color);
       renderer.render(scene, camera);
       if (visible && !reduced) frame = requestAnimationFrame(draw);
     };
@@ -121,10 +93,6 @@ export function PlanetScene() {
       previous = 0;
       draw(0);
     };
-    const accentRender = () => {
-      if (reduced) draw(0);
-    };
-    window.addEventListener('accentchange', accentRender);
     motionQuery.addEventListener('change', motionChange);
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
@@ -141,12 +109,8 @@ export function PlanetScene() {
       observer.disconnect();
       resizeObserver.disconnect();
       motionQuery.removeEventListener('change', motionChange);
-      window.removeEventListener('accentchange', readAccent);
-      window.removeEventListener('accentchange', accentRender);
       geometry.dispose();
       material.dispose();
-      orbitGeometry.dispose();
-      orbitMaterial.dispose();
       maps?.colorMap.dispose();
       maps?.heightMap.dispose();
       renderer.dispose();
@@ -155,17 +119,11 @@ export function PlanetScene() {
   }, []);
 
   return (
-    <figure className="planet-stage relative h-[270px] w-full sm:h-[410px] lg:h-[min(62dvh,560px)]">
+    <figure className="planet-stage group relative mx-auto h-[280px] w-full max-w-[500px] sm:h-[390px] lg:h-[min(60dvh,520px)]">
       <div className="planet-halo pointer-events-none absolute inset-0" />
       <div
         ref={containerRef}
-        className="absolute inset-0 [&>canvas]:size-full"
-      />
-      <button
-        type="button"
-        aria-label={paused ? 'Resume planet rotation' : 'Pause planet rotation'}
-        aria-pressed={paused}
-        onClick={() => setPaused((value) => !value)}
+        className="absolute inset-x-0 bottom-9 top-0 [&>canvas]:size-full"
         onPointerMove={(event) => {
           const rect = event.currentTarget.getBoundingClientRect();
           pointer.current = {
@@ -176,13 +134,23 @@ export function PlanetScene() {
         onPointerLeave={() => {
           pointer.current = { x: 0, y: 0 };
         }}
-        className="focus-ring absolute left-1/2 top-1/2 size-[66%] -translate-x-1/2 -translate-y-1/2 cursor-grab rounded-full active:cursor-grabbing"
       />
-      <figcaption
-        aria-live="polite"
-        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center gap-2 px-3 py-2 font-mono text-[10px] text-muted-foreground sm:text-xs"
-      >
-        <span>{paused ? 'Rotation paused' : 'Select to pause'}</span>
+      <figcaption className="absolute inset-x-0 bottom-0 hidden items-center justify-center gap-3 text-sm text-muted-foreground group-has-[canvas]:flex">
+        <span>Vinyl study</span>
+        <button
+          type="button"
+          aria-label={
+            paused ? 'Resume planet rotation' : 'Pause planet rotation'
+          }
+          onClick={() => setPaused((value) => !value)}
+          className="focus-ring grid size-9 place-items-center rounded-full border border-border text-brand transition-colors hover:bg-accent motion-reduce:hidden"
+        >
+          {paused ? (
+            <Play aria-hidden="true" size={14} />
+          ) : (
+            <Pause aria-hidden="true" size={14} />
+          )}
+        </button>
       </figcaption>
     </figure>
   );

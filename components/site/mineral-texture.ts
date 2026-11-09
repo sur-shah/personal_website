@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
-const width = 768;
-const height = 384;
+const width = 1024;
+const height = 512;
 
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
 const smooth = (value: number) => value * value * (3 - 2 * value);
@@ -23,11 +23,7 @@ function noise(x: number, y: number, period: number) {
   return low * (1 - fy) + high * fy;
 }
 
-function mixColor(a: number[], b: number[], amount: number) {
-  return a.map((channel, index) =>
-    Math.round(channel + (b[index] - channel) * clamp(amount)),
-  );
-}
+const mix = (a: number, b: number, amount: number) => a + (b - a) * amount;
 
 export function createMineralTextures() {
   const colorCanvas = document.createElement('canvas');
@@ -40,11 +36,11 @@ export function createMineralTextures() {
 
   const colorImage = colorContext.createImageData(width, height);
   const heightImage = heightContext.createImageData(width, height);
-  const ink = [18, 25, 58];
-  const cobalt = [48, 64, 133];
-  const teal = [54, 111, 126];
-  const silver = [175, 190, 201];
-  const copper = [164, 73, 71];
+  const ink = [9, 29, 22];
+  const forest = [29, 83, 57];
+  const moss = [82, 112, 63];
+  const ridge = [165, 189, 144];
+  const olive = [122, 120, 72];
 
   for (let y = 0; y < height; y++) {
     const v = y / height;
@@ -62,7 +58,7 @@ export function createMineralTextures() {
       const band = Math.sin(flow * Math.PI * 2);
       const strata = Math.sin(flow * Math.PI * 5 + fine * 2);
       const paleVein = Math.pow(Math.max(0, band), 9);
-      const redVein = Math.pow(
+      const oliveVein = Math.pow(
         Math.max(0, -Math.sin(flow * Math.PI * 2 + 0.9)),
         26,
       );
@@ -70,14 +66,16 @@ export function createMineralTextures() {
         0.31 + coarse * 0.26 + medium * 0.14 + paleVein * 0.22 + strata * 0.075,
       );
 
-      let color = mixColor(ink, cobalt, 0.28 + coarse * 0.7);
-      color = mixColor(color, teal, clamp((medium - 0.45) * 1.3));
-      color = mixColor(color, silver, paleVein * (0.47 + fine * 0.38));
-      color = mixColor(color, copper, redVein * 0.82);
+      const mossAmount = clamp((medium - 0.42) * 1.5);
+      const ridgeAmount = paleVein * (0.35 + fine * 0.34);
       const grain = (fine - 0.5) * 21;
       const index = (y * width + x) * 4;
       for (let channel = 0; channel < 3; channel++) {
-        colorImage.data[index + channel] = color[channel] + grain;
+        const base = mix(ink[channel], forest[channel], 0.25 + coarse * 0.75);
+        const ground = mix(base, moss[channel], mossAmount);
+        const vein = mix(ground, ridge[channel], ridgeAmount);
+        colorImage.data[index + channel] =
+          mix(vein, olive[channel], oliveVein * 0.55) + grain;
         heightImage.data[index + channel] = relief * 255;
       }
       colorImage.data[index + 3] = heightImage.data[index + 3] = 255;
