@@ -3,6 +3,10 @@
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { VinylDisc } from '@/components/site/vinyl-disc';
+import {
+  TurntableLamp,
+  TurntableTonearm,
+} from '@/components/site/turntable-details';
 
 function pointerAngle(event: PointerEvent<HTMLButtonElement>) {
   const bounds = event.currentTarget.getBoundingClientRect();
@@ -100,29 +104,34 @@ export function VinylRecord() {
 
   return (
     <figure
-      className="vinyl-record mx-auto grid w-full max-w-[19rem] justify-items-center gap-3 sm:max-w-[26rem]"
+      className="vinyl-record turntable mx-auto w-full max-w-[29rem]"
+      aria-label="Interactive turntable"
       data-paused={paused}
     >
-      <button
-        ref={stage}
-        type="button"
-        className="vinyl-record__stage focus-ring touch-none cursor-grab select-none rounded-full active:cursor-grabbing"
-        aria-label="Spin record"
-        title="Drag to spin the record"
-        onPointerDown={startDrag}
-        onPointerMove={moveDrag}
-        onPointerUp={(event) => endDrag(event, true)}
-        onPointerCancel={(event) => endDrag(event, false)}
-        onLostPointerCapture={(event) => endDrag(event, false)}
-        onClick={(event) => {
-          if (event.detail !== 0) return;
-          stopGlide();
-          rotateBy(Math.PI / 3);
-        }}
-      >
-        <VinylDisc surfaceRef={surface} />
-      </button>
-      <figcaption className="motion-reduce:hidden">
+      <TurntableLamp />
+      <div className="turntable__deck">
+        <span className="turntable__platter" aria-hidden="true" />
+        <button
+          ref={stage}
+          type="button"
+          className="vinyl-record__stage focus-ring touch-none cursor-grab select-none rounded-full active:cursor-grabbing"
+          aria-label="Spin record"
+          title="Drag to spin the record"
+          onPointerDown={startDrag}
+          onPointerMove={moveDrag}
+          onPointerUp={(event) => endDrag(event, true)}
+          onPointerCancel={(event) => endDrag(event, false)}
+          onLostPointerCapture={(event) => endDrag(event, false)}
+          onClick={(event) => {
+            if (event.detail !== 0) return;
+            stopGlide();
+            rotateBy(Math.PI / 3);
+          }}
+        >
+          <VinylDisc surfaceRef={surface} />
+        </button>
+        <TurntableTonearm />
+        <span className="turntable__light" aria-hidden="true" />
         <button
           type="button"
           aria-label={action}
@@ -131,7 +140,7 @@ export function VinylRecord() {
             stopGlide();
             setPaused((current) => !current);
           }}
-          className="focus-ring grid size-11 place-items-center rounded-full border border-border text-brand transition-colors hover:bg-accent"
+          className="turntable__control focus-ring grid size-11 place-items-center rounded-full text-[#f1ead4] motion-reduce:hidden"
         >
           {paused ? (
             <Play aria-hidden="true" size={15} />
@@ -139,7 +148,7 @@ export function VinylRecord() {
             <Pause aria-hidden="true" size={15} />
           )}
         </button>
-      </figcaption>
+      </div>
     </figure>
   );
 }
