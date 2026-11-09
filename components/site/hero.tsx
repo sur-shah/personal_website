@@ -1,5 +1,5 @@
 import { buttonVariants } from '@/components/ui/button';
-import { PlanetScene } from '@/components/site/planet-scene';
+import { VinylRecord } from '@/components/site/vinyl-record';
 import { siteConfig } from '@/lib/site-config';
 import { cn } from '@/lib/utils';
 
@@ -45,7 +45,7 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <PlanetScene />
+        <VinylRecord />
       </div>
     </section>
   );

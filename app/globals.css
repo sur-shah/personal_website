@@ -351,6 +351,142 @@ html[data-accent='lunar'] {
   }
 }
 
+.vinyl-record__stage {
+  display: grid;
+  width: min(100%, 24rem);
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.vinyl-record__disc {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: perspective(950px) rotateX(16deg) rotateY(-12deg) rotateZ(-14deg);
+  box-shadow: 8px 16px 26px rgb(21 30 24 / 17%);
+}
+
+.dark .vinyl-record__disc {
+  box-shadow:
+    0 0 0 1px #4a514b,
+    8px 16px 26px rgb(0 0 0 / 50%);
+}
+
+.vinyl-record__surface {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      circle,
+      transparent 49.8%,
+      #0d100f 50.1%,
+      transparent 50.7%,
+      transparent 59%,
+      #0c0e0d 59.3%,
+      transparent 60%,
+      transparent 68.5%,
+      #1f2520 69%,
+      #101311 70.3%
+    ),
+    repeating-radial-gradient(
+      circle,
+      #101311 0 1px,
+      #292e2a 1.5px,
+      #171b18 2.8px,
+      #101311 3.5px
+    );
+  animation: vinyl-rotation 19s linear infinite;
+}
+
+.vinyl-record[data-paused='true'] .vinyl-record__surface {
+  animation-play-state: paused;
+}
+
+.vinyl-record__reflection {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from 14deg,
+    transparent 7%,
+    #dce5d947 15%,
+    transparent 27%,
+    transparent 52%,
+    #dce5d92e 64%,
+    transparent 76%
+  );
+  mask-image: radial-gradient(
+    circle,
+    transparent 26%,
+    black 27%,
+    black 69%,
+    transparent 71%
+  );
+}
+
+.vinyl-record__label {
+  position: relative;
+  display: grid;
+  width: 38%;
+  aspect-ratio: 1;
+  justify-items: center;
+  align-content: space-evenly;
+  border: 1px solid #7b9d87;
+  border-radius: 50%;
+  background: radial-gradient(circle, #37644a, #1d422d 76%);
+  box-shadow:
+    0 0 0 4px #0d110e,
+    inset 0 0 0 5px #173d29;
+  color: #f1efe2;
+  line-height: 1;
+}
+
+.vinyl-record__name {
+  font-size: clamp(0.75rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+}
+
+.vinyl-record__orbit {
+  width: 34%;
+  height: auto;
+  opacity: 0.8;
+}
+
+.vinyl-record__side {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(0.5rem, 1vw, 0.65rem);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.vinyl-record__spindle {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 6%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--background);
+  box-shadow: inset 0 1px 2px #0008;
+}
+
+@keyframes vinyl-rotation {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vinyl-record__surface {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .map-pin-pulse {
     animation: none;
