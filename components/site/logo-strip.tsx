@@ -1,15 +1,16 @@
 import { CompanyLogo } from '@/components/site/company-logo';
 import { ExperienceMap } from '@/components/site/experience-map';
+import { LocationsHandoff } from '@/components/site/locations-handoff';
 import { experience } from '@/lib/resume-data';
 
 export function LogoStrip() {
   return (
     <section
       aria-label="Organizations"
-      className="locations-surface relative isolate overflow-hidden border-y border-border py-12 sm:py-14"
+      className="locations-surface relative isolate overflow-hidden border-b border-border py-12 sm:py-14"
       id="locations"
     >
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 sm:px-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+      <LocationsHandoff>
         <div className="flex flex-col gap-7">
           <h2 className="max-w-xs text-3xl font-semibold tracking-tight sm:text-4xl">
             Where I’ve worked
@@ -23,7 +24,7 @@ export function LogoStrip() {
           </div>
         </div>
         <ExperienceMap />
-      </div>
+      </LocationsHandoff>
     </section>
   );
 }

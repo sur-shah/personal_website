@@ -173,11 +173,47 @@ html[data-accent='lunar'] {
   );
 }
 .locations-surface {
-  background: color-mix(in srgb, var(--background) 94%, var(--accent-hex));
+  background: linear-gradient(
+    var(--background),
+    color-mix(in srgb, var(--background) 94%, var(--accent-hex)) 9rem
+  );
 }
 .dark .locations-surface {
   background: transparent;
 }
+.locations-grooves {
+  fill: none;
+  stroke: var(--brand);
+  opacity: 0.22;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 25%,
+    black 79%,
+    transparent
+  );
+}
+.locations-grooves path {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+}
+.locations-grooves path:first-child,
+.locations-grooves path:last-child {
+  opacity: 0.55;
+}
+
+.locations-content:focus-within {
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .locations-grooves path {
+    stroke-dashoffset: 0 !important;
+  }
+  .locations-content {
+    transform: none !important;
+  }
+}
+
 .map-route {
   fill: none;
   stroke: var(--brand);
