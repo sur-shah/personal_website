@@ -7,7 +7,7 @@ export function LogoStrip() {
   return (
     <section
       aria-label="Organizations"
-      className="locations-surface relative isolate overflow-hidden border-b border-border py-12 sm:py-14"
+      className="relative isolate overflow-hidden border-b border-border py-12 sm:py-14"
       id="locations"
     >
       <LocationsHandoff>

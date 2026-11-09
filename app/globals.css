@@ -172,15 +172,6 @@ html[data-accent='lunar'] {
     transparent 62%
   );
 }
-.locations-surface {
-  background: linear-gradient(
-    var(--background),
-    color-mix(in srgb, var(--background) 94%, var(--accent-hex)) 9rem
-  );
-}
-.dark .locations-surface {
-  background: transparent;
-}
 .locations-grooves {
   fill: none;
   stroke: var(--brand);
