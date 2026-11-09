@@ -39,9 +39,17 @@ export function Experience() {
               </div>
             </Reveal>
           ))}
+        </div>
 
-          <Reveal delay={experience.length * 0.06}>
-            <div className="grid gap-4 py-8 sm:grid-cols-[9rem_1fr] sm:gap-8">
+        <section aria-labelledby="leadership-heading" className="mt-8">
+          <h3
+            id="leadership-heading"
+            className="text-2xl font-semibold tracking-tight"
+          >
+            Leadership
+          </h3>
+          <Reveal className="mt-5 border-t border-border">
+            <div className="grid gap-4 pt-8 sm:grid-cols-[9rem_1fr] sm:gap-8">
               <p className="text-sm text-muted-foreground">
                 {leadership.period}
               </p>
@@ -51,9 +59,9 @@ export function Experience() {
                   accent={leadership.accent}
                 />
                 <div>
-                  <h3 className="text-lg font-medium text-foreground">
+                  <h4 className="text-lg font-medium text-foreground">
                     {leadership.role}
-                  </h3>
+                  </h4>
                   <p className="text-sm text-muted-foreground">
                     {leadership.org}
                   </p>
@@ -64,7 +72,7 @@ export function Experience() {
               </div>
             </div>
           </Reveal>
-        </div>
+        </section>
       </div>
     </section>
   );
