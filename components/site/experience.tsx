@@ -1,7 +1,32 @@
 import { CompanyLogo } from '@/components/site/company-logo';
 import { Reveal } from '@/components/site/reveal';
 import { SectionHeading } from '@/components/site/section-heading';
-import { experience, leadership } from '@/lib/resume-data';
+import {
+  experience,
+  leadership,
+  type ExperienceEntry,
+} from '@/lib/resume-data';
+
+function RoleSummary({
+  summary,
+  skills,
+}: Pick<ExperienceEntry, 'summary' | 'skills'>) {
+  return (
+    <>
+      <p className="mt-4 text-sm leading-6 text-foreground/80">{summary}</p>
+      <ul aria-label="Skills used" className="mt-3 flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <li
+            key={skill}
+            className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
+          >
+            {skill}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
 
 export function Experience() {
   return (
@@ -24,16 +49,10 @@ export function Experience() {
                       {entry.role}
                     </h3>
                     <p className="text-sm text-muted-foreground">{entry.org}</p>
-                    <ul className="mt-4 space-y-2">
-                      {entry.highlights.map((point) => (
-                        <li
-                          key={point}
-                          className="border-l border-brand/50 pl-4 text-sm leading-6 text-foreground/80"
-                        >
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
+                    <RoleSummary
+                      summary={entry.summary}
+                      skills={entry.skills}
+                    />
                   </div>
                 </div>
               </div>
@@ -65,9 +84,10 @@ export function Experience() {
                   <p className="text-sm text-muted-foreground">
                     {leadership.org}
                   </p>
-                  <p className="mt-4 text-sm leading-6 text-foreground/80">
-                    {leadership.highlight}
-                  </p>
+                  <RoleSummary
+                    summary={leadership.summary}
+                    skills={leadership.skills}
+                  />
                 </div>
               </div>
             </div>

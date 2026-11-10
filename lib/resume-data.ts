@@ -40,7 +40,8 @@ export type ExperienceEntry = {
   org: string;
   role: string;
   period: string;
-  highlights: string[];
+  summary: string;
+  skills: string[];
   logo: CompanyLogo;
   accent: CompanyAccent;
 };
@@ -52,9 +53,14 @@ export const experience: ExperienceEntry[] = [
     period: 'Jun 2026 - Aug 2026',
     logo: { type: 'image', src: '/logos/attentive.jpg', alt: 'Attentive' },
     accent: 'violet',
-    highlights: [
-      'Engineered a fault-tolerant Python runtime for multi-hour agent workflows that survives worker crashes and checkpoints state so interrupted runs pick up where they left off.',
-      'Designed a concurrency-safe state engine using SHA-256 content-addressed records, sustaining 2,600 writes/sec across 20 parallel workers.',
+    summary:
+      'Built infrastructure to make AI-powered marketing workflows more reliable and used AI agents to catch issues during code review.',
+    skills: [
+      'Python',
+      'Docker',
+      'Agent orchestration',
+      'Fault tolerance',
+      'Code review',
     ],
   },
   {
@@ -63,9 +69,14 @@ export const experience: ExperienceEntry[] = [
     period: 'Jun 2025 - Aug 2025',
     logo: { type: 'image', src: '/logos/gallo.jpg', alt: 'E. & J. Gallo' },
     accent: 'wine',
-    highlights: [
-      'Architected an end-to-end license entity matching pipeline covering 2.56M+ accounts against 870K state licenses using TypeScript, SQL, and AWS Bedrock, increasing compliance accuracy by 40%.',
-      'Built a fuzzy-matching engine with address normalization delivering 95% precision on noisy customer data, containerized and deployed to Kubernetes via scheduled jobs.',
+    summary:
+      'Built a data pipeline that helps the compliance team match customer accounts to state licenses, even when records are inconsistent.',
+    skills: [
+      'TypeScript',
+      'PostgreSQL',
+      'AWS Bedrock',
+      'Kubernetes',
+      'Entity matching',
     ],
   },
   {
@@ -78,10 +89,9 @@ export const experience: ExperienceEntry[] = [
       alt: 'Triton Software Engineering',
     },
     accent: 'brand',
-    highlights: [
-      "Launched SpayLA's nonprofit web platform with React, TypeScript, and Firebase, enabling 100+ Los Angeles pet owners to access affordable clinic listings.",
-      'Increased site performance and engagement by 35% through frontend refactoring and optimized image delivery.',
-    ],
+    summary:
+      'Helped launch SpayLA’s website so Los Angeles pet owners could find affordable clinics, and improved how quickly the site loads.',
+    skills: ['React', 'TypeScript', 'Firebase', 'Web performance'],
   },
   {
     org: 'Algoverse',
@@ -89,21 +99,17 @@ export const experience: ExperienceEntry[] = [
     period: 'Jun 2024 - Nov 2024',
     logo: { type: 'image', src: '/logos/algoverse.jpg', alt: 'Algoverse' },
     accent: 'emerald',
-    highlights: [
-      'Designed Pragmatic Metacognitive Prompting (PMP), a multi-stage prompting pipeline for sarcasm detection in LLMs, outperforming prior baselines by 10%.',
-      'Published findings at COLING 2025, establishing PMP as a benchmark for sarcasm and sentiment analysis.',
+    summary:
+      'Researched how language models detect sarcasm and co-authored a COLING 2025 paper on a prompting approach that improves detection.',
+    skills: [
+      'Prompt engineering',
+      'LLM evaluation',
+      'Natural language processing',
     ],
   },
 ];
 
-export const leadership: {
-  org: string;
-  role: string;
-  period: string;
-  logo: CompanyLogo;
-  accent: CompanyAccent;
-  highlight: string;
-} = {
+export const leadership: ExperienceEntry = {
   org: 'Triton Software Engineering',
   role: 'Vice President of Operations',
   period: 'Jun 2025 - Present',
@@ -113,6 +119,7 @@ export const leadership: {
     alt: 'Triton Software Engineering',
   },
   accent: 'brand',
-  highlight:
-    'Standardized onboarding for 100+ student developers, cutting ramp-up time by 50%, and reduced release issues through feature-branch workflows and CI/CD across 7 active projects.',
+  summary:
+    'Helped student developers get started faster and made releases more consistent across project teams.',
+  skills: ['Developer onboarding', 'Team operations', 'Git workflows', 'CI/CD'],
 };
